@@ -10,7 +10,8 @@ console.log('Initializing Sequelize');
 // create your instance of sequelize
 var sequelize = new Sequelize(config.db.name, config.db.username, config.db.password, {
   dialect: 'mysql',
-  storage: config.db.storage
+  storage: config.db.storage,
+  host: config.db.host || 'localhost'
 });
 
 // loop through all files in models directory ignoring hidden files and this file
@@ -34,6 +35,16 @@ Object.keys(db).forEach(function(modelName) {
 
 // Synchronizing any model changes with database. 
 // WARNING: this will DROP your database everytime you re-run your application
+
+sequelize.authenticate().complete(function(err){
+  if(!!err){
+    console.log('db connection failed');
+    return;
+  }
+
+  console.log('db connection established');
+});
+
 if(config.db.initiate){
   sequelize
     .sync({force: true})

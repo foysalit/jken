@@ -5,8 +5,9 @@ var express = require('express');
 var flash = require('connect-flash');
 var helpers = require('view-helpers');
 var config = require('./config');
+var sequelizeStore = require('connect-session-sequelize')(express);
 
-module.exports = function(app, passport) {
+module.exports = function(app, passport, db) {
 
     console.log('Initializing Express');
 
@@ -49,7 +50,10 @@ module.exports = function(app, passport) {
         app.use(express.methodOverride());
 
         //express/mongo session storage
-        app.use(express.session({ secret: '$uper$ecret$e$$ionKey'}));
+        app.use(express.session({ 
+            secret: '$uper$ecret$e$$ionKey',
+            store: new sequelizeStore({db: db.sequelize})
+        }));
 
         //connect flash for flash messages
         app.use(flash());

@@ -4,6 +4,7 @@ rootPath = path.normalize(__dirname + '/../..');
 module.exports = {
 	root: rootPath,
 	port: process.env.PORT || 3000,
-	modelsDir : rootPath + '/app/models'
+	modelsDir : rootPath + '/app/models',
+	sessionStore: 'sessions'
     // db: process.env.MONGOHQ_URL    
 }

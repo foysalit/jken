@@ -3,7 +3,7 @@
   "description": "Dashboard app on M*EAN stack.",
   "version": "0.1.0",
   "private": false,
-  "author": "Jeff Potter",
+  "author": "Foysal Ahamed",
   "repository": {
     "type": "git",
     "url": "https://github.com/foysalit/jken"
@@ -19,14 +19,11 @@
   "dependencies": {
     "express": "~3.5.0",
     "jade": "latest",
-    "sequelize-sqlite": "latest",
-    "connect-mongo": "latest",
+    "connect-session-sequelize": "0.0.5",
     "connect-flash": "latest",
     "crypto": "latest",
     "passport": "latest",
     "passport-local": "latest",
-    "passport-facebook": "latest",
-    "passport-twitter": "latest",
     "underscore": "latest",
     "async": "latest",
     "view-helpers": "latest",

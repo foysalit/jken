@@ -20,7 +20,7 @@ var passport        = require('./config/passport');
 var app = express();
 
 //Initialize Express
-require('./config/express')(app, passport);
+require('./config/express')(app, passport, db);
 
 //Initialize Routes
 require('./config/routes').init(app, passport, auth);
