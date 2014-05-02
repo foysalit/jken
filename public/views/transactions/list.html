@@ -1,0 +1,11 @@
+<section data-ng-controller="TransactionsController" data-ng-init="find()">
+	<ul class="transactions unstyled">
+		<li data-ng-repeat="transaction in transactions">
+			<span>{{transaction.updatedAt | date:'medium'}}</span> /
+			<span>{{transaction.user.name}}</span>
+			<h2><a data-ng-href="#!/transactions/{{transaction.id}}">{{transaction.title}}</a></h2>
+			<div>{{transaction.content}}</div>
+		</li>
+	</ul>
+	<h1 data-ng-hide="!transactions || transactions.length">No transactions yet. <br> Why don't you <a href="/#!/transactions/create">Create One</a>?</h1>
+</section>

@@ -1,9 +1,17 @@
 doctype html
 html(lang='en', xmlns='http://www.w3.org/1999/xhtml', xmlns:fb='https://www.facebook.com/2008/fbml', itemscope='itemscope', itemtype='http://schema.org/Product')
-  include ../includes/head
-  body
-    .navbar.navbar-inverse.navbar-fixed-top(data-ng-include="'views/header.html'", data-role="navigation")
-    section.content
-      section.container
-        block content
-    include ../includes/foot
+	include ../includes/head
+
+	body.skin-black
+
+		header.header
+			a.logo(href="/")
+				img(src="/img/superstore_logo.png", width="210")
+			nav.navbar.navbar-static-top(data-role="navigation", data-ng-include="'views/header.html'")
+
+		.wrapper.row-offcanvas.row-offcanvas-left
+			aside.left-side.sidebar-offcanvas(data-ng-include="'views/sidebar.html'")
+			
+			block content
+
+	include ../includes/foot
