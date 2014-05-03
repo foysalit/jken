@@ -14,9 +14,6 @@ angular.module('mean').config(['$routeProvider',
             when('/articles/:articleId', {
                 templateUrl: 'views/articles/view.html'
             }).
-            when('/', {
-                templateUrl: 'views/index.html'
-            }).
             when('/transactions', {
                 templateUrl: 'views/transactions/list.html'
             }).
@@ -28,6 +25,15 @@ angular.module('mean').config(['$routeProvider',
             }).
             when('/transactions/:transactionId', {
                 templateUrl: 'views/transactions/view.html'
+            }).
+            when('/categories', {
+                templateUrl: 'views/categories/list.html'
+            }).
+            when('/categories/:categoryId/edit', {
+                templateUrl: 'views/categories/edit.html'
+            }).
+            when('/categories/:categoryId', {
+                templateUrl: 'views/categories/view.html'
             }).
             when('/', {
                 templateUrl: 'views/index.html'

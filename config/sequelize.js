@@ -11,7 +11,8 @@ console.log('Initializing Sequelize');
 var sequelize = new Sequelize(config.db.name, config.db.username, config.db.password, {
   dialect: 'mysql',
   storage: config.db.storage,
-  host: config.db.host || 'localhost'
+  host: config.db.host || 'localhost',
+  omitNull: true
 });
 
 // loop through all files in models directory ignoring hidden files and this file

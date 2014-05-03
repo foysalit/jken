@@ -1,0 +1,82 @@
+<section class="content-header">
+    <h1>
+        Categories Dashboard
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+	        <a href="#">
+	        	<i class="fa fa-dashboard"></i> 
+	        	Home
+	        </a>
+	    </li>
+        <li>
+        	<a href="#!/categories">Categories</a>
+        </li>
+        <li class="active">Create</li>
+    </ol>
+</section>
+
+<section class="content" data-ng-controller="CategoriesController">
+	<div class="row">
+	    <div class="col-md-6" data-ng-init="find()">
+	        <div class="box">
+	            <div class="box-header">
+	                <h3 class="box-title">Categories Table</h3>
+	            </div><!-- /.box-header -->
+	            <div class="box-body">
+	                <table class="table table-bordered">
+	                    <tr>
+	                        <th style="width: 10px">#</th>
+	                        <th>Category ID</th>
+	                        <th>Category Name</th>
+	                    </tr>
+	                    <tr data-ng-repeat="category in categories">
+	                    	<td>{{category.id}}</td>
+	                    	<td>{{category.name}}</td>
+	                    	<td>
+	                    		<a data-ng-click="removeOne($index)">
+	                    			<i class="fa fa-times"></i>
+	                    		</a>
+	                    	</td>
+	                    </tr>
+	                </table>
+	            </div><!-- /.box-body -->
+
+	            <div class="box-footer clearfix">
+				    <pagination 
+				    	total-items="totalCategories" 
+				    	page="currentPage"
+				    	items-per-page="categoriesPerPage"
+				    	on-select-page="paginate(page)"
+				    	class="pagination-sm no-margin pull-right">
+				    </pagination>
+	            </div>
+	        </div><!-- /.box -->
+	    </div><!-- /.col -->
+		<div class="col-md-6" data-ng-init="setUpForm()">
+		    <div class="box box-primary">
+		        <div class="box-header">
+		            <h3 class="box-title">Create A New Category</h3>
+		        </div><!-- /.box-header -->
+		        <!-- form start -->
+		        <form role="form" data-ng-submit="create()">
+		            <div class="box-body">
+		                <div class="form-group">
+		                    <label for="name">Category Name</label>
+		                    <input 
+		                    	data-ng-model="name"
+		                    	type="text" 
+		                    	class="form-control" 
+		                    	id="name" 
+		                    	placeholder="Enter A Name For Your Category">
+		                </div>
+		            </div><!-- /.box-body -->
+
+		            <div class="box-footer">
+		                <button type="submit" class="btn btn-primary">Submit</button>
+		            </div>
+		        </form>
+		    </div><!-- /.box -->
+		</div>
+	</div>
+</section>

@@ -34,7 +34,7 @@
     "grunt-env": "latest",
     "lodash": "latest",
     "winston": "latest",
-    "sequelize-mysql": "latest"
+    "sequelize-mysql": "~1.7.0"
   },
   "devDependencies": {
     "grunt-contrib-watch": "latest",

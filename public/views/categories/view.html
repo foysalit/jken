@@ -1,0 +1,14 @@
+<section data-ng-controller="TransactionsController" data-ng-init="findOne()">
+    <span>{{transaction.updatedAt | date:'medium'}}</span>/
+    <span>{{transaction.user.name}}</span>
+    <h2>{{transaction.title}}</h2>
+    <div data-ng-show="global.user.id == transaction.user.id">
+        <a class="btn" href="/#!/transactions/{{transaction.id}}/edit">
+        	<i class="icon-edit"></i>
+        </a> 
+        <a class="btn" data-ng-click="remove();">
+            <i class="icon-trash"></i>
+        </a>
+    </div>
+    <div>{{transaction.content}}</div>
+</section>
