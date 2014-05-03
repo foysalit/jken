@@ -1,4 +1,11 @@
 extends ../layouts/guest
 
 block content
+	if message && message.length
+		.alert.alert.danger.alert-dismissable
+			i.fa.fa-ban
+			button.close(data-dismiss="alert", type="button")
+			b Error!
+			#{message}
+		
 	block auth

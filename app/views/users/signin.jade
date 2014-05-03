@@ -1,9 +1,10 @@
 extends auth
+
 block auth
 	#login-box.form-box
-		.header Sign In
+		.header Login Form
 
-		form.login-form(action="/#!/beacons", method="get")
+		form.login-form(action="/users/session", method="post")
 			.body.bg-gray
 				.form-group
 					input.form-control(type="text", name="username", placeholder="Username")
@@ -11,5 +12,5 @@ block auth
 					input.form-control(type="password", name="password", placeholder="Password")
 
 			.footer
-				//button.btn.bg-olive.btn-block(type="submit") Sign In 
-				a.button.btn.bg-olive.btn-block(href="/locations") Sign In
+				button.btn.bg-olive.btn-block(type="submit") Sign In 
+				a.btn.bg-navy.btn-block(href="/signup") Sign Up 
