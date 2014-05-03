@@ -95,7 +95,7 @@ exports.show = function(req, res) {
  * List of transactions
  */
 exports.all = function(req, res) {
-    db.Transaction.findAll({include: [db.User]}).success(function(transactions){
+    db.Transaction.findAll({include: [db.User, db.Category]}).success(function(transactions){
         return res.jsonp(transactions);
     }).error(function(err){
         return res.render('error', {

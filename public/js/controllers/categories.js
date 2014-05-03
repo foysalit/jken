@@ -1,4 +1,6 @@
-angular.module('mean.categories').controller('CategoriesController', ['$scope', '$routeParams', '$location', 'Global', 'Categories', function ($scope, $routeParams, $location, Global, Categories) {
+angular.module('mean.categories').controller('CategoriesController', [
+    '$scope', '$routeParams', '$location', 'Global', 'Categories', 'Transactions', 
+    function ($scope, $routeParams, $location, Global, Categories, Transactions) {
     $scope.global = Global;
 
     $scope.create = function() {

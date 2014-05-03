@@ -1,9 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
 
     var Transaction = sequelize.define('Transaction', {
-            id: DataTypes.INTEGER,
             account: DataTypes.INTEGER,
-            amount: DataTypes.DECIMAL,
+            amount: DataTypes.DECIMAL(10, 2),
             payee: DataTypes.STRING,
             class: DataTypes.STRING,
             description: DataTypes.TEXT

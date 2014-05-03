@@ -6,7 +6,7 @@ angular.module('mean.transactions').controller('TransactionsController', ['$scop
         var transaction = new Transactions(this.createFormData);
         
         transaction.$save(function(response) {
-            $location.path("transactions/" + response.id);
+            $location.path("transactions");
         });
         
         $scope.createFormData = {};
