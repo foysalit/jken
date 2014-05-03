@@ -28,11 +28,13 @@
 	                    <tr>
 	                        <th style="width: 10px">#</th>
 	                        <th>Category Name</th>
+	                        <th>Category Created</th>
 	                        <th>Actions</th>
 	                    </tr>
 	                    <tr data-ng-repeat="category in categories">
 	                    	<td>{{category.id}}</td>
 	                    	<td>{{category.name}}</td>
+	                    	<td>{{category.createdAt | date:'medium'}}</td>
 	                    	<td>
 	                    		<a data-ng-click="removeOne($index)">
 	                    			<i class="fa fa-times"></i>
