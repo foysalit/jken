@@ -9,5 +9,6 @@ module.exports = {
     app: {
         name: "Dashboard - Production"
     },
-    port: process.env.OPENSHIFT_NODEJS_PORT
+    port: process.env.OPENSHIFT_NODEJS_PORT,
+    ip: process.env.OPENSHIFT_NODEJS_IP
 }
