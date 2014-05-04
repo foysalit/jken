@@ -3,16 +3,15 @@ angular.module('mean.categories').controller('CategoriesController', [
     function ($scope, $routeParams, $location, Global, Categories, Transactions) {
     $scope.global = Global;
 
+    $scope.createFormData = {};
     $scope.create = function() {
-        var category = new Categories({
-            name: this.name
-        });
+        var category = new Categories(this.createFormData);
 
         category.$save(function(response) {
             $scope.categories.push(response);
         });
 
-        this.name = "";
+        $scope.createFormData = {};
     };
 
     $scope.remove = function(category) {

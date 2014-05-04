@@ -30,13 +30,9 @@ angular.module('mean.transactions').controller('TransactionsController', ['$scop
 
     $scope.update = function() {
         var transaction = $scope.transaction;
-        if (!transaction.updated) {
-            transaction.updated = [];
-        }
-        transaction.updated.push(new Date().getTime());
 
         transaction.$update(function() {
-            $location.path('transactions/' + transaction.id);
+            $location.path('transactions');
         });
     };
 

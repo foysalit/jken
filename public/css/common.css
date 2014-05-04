@@ -1,25 +1,21 @@
-.navbar .nav>li>a.brand {
-    padding-left:20px;
-    margin-left:0
+.nested-cats{
+    margin-left: 20px;
 }
 
-.content {
-    margin-top:50px;
-    width:100%
+.klass-row{
+    padding: 12px 0;
+    background: #E7E6E6;
+    border-bottom: 1px solid #428bca;
 }
 
-footer {
-    position:fixed;
-    left:0px;
-    bottom:0px;
-    height:30px;
-    width:100%;
-    background:#ddd;
-    -webkit-box-shadow:0 8px 6px 6px black;
-    -moz-box-shadow:0 8px 6px 6px black;
-    box-shadow:0 8px 6px 6px black
+.cat-row{
+    padding: 8px 0;
+    background: #CECCCC;
+    border-bottom: 1px solid #5bc0de;
 }
 
-footer p {
-    padding:5px 0 12px 10px
+.trans-row{
+    padding: 8px 0;
+    background: #B3B3B3;
+    border-bottom: 1px solid #5cb85c;
 }

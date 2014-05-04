@@ -9,6 +9,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         {
             associate: function(models){
+                Transaction.belongsTo(models.Klass);
                 Transaction.belongsTo(models.Category);
                 Transaction.belongsTo(models.User);
             }

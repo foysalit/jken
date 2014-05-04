@@ -24,6 +24,16 @@ angular.module('mean').config(['$routeProvider',
                 templateUrl: 'views/categories/view.html',
                 controller: 'CategoriesController'
             }).
+            when('/classes', {
+                templateUrl: 'views/classes/list.html'
+            }).
+            when('/classes/:classId/edit', {
+                templateUrl: 'views/classes/edit.html'
+            }).
+            when('/classes/:classId', {
+                templateUrl: 'views/classes/view.html',
+                controller: 'KlassesController'
+            }).
             when('/', {
                 templateUrl: 'views/index.html'
             }).

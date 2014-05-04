@@ -10,7 +10,7 @@ var db = require('../../config/sequelize');
  */
 exports.category = function(req, res, next, id) {
     console.log('id => ' + id);
-    db.Category.find({ where: {id: id}, include: [db.User, db.Transaction]}).success(function(category){
+    db.Category.find({ where: {id: id}, include: [db.User, db.Klass, db.Transaction]}).success(function(category){
         if(!category) {
             return next(new Error('Failed to load category ' + id));
         } else {
@@ -95,7 +95,7 @@ exports.show = function(req, res) {
  * List of Categories
  */
 exports.all = function(req, res) {
-    db.Category.findAll({include: [db.User]}).success(function(categories){
+    db.Category.findAll({include: [db.User, db.Klass]}).success(function(categories){
         return res.jsonp(categories);
     }).error(function(err){
         return res.render('500', {

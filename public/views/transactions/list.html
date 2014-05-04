@@ -18,7 +18,7 @@
 
 <section class="content" data-ng-controller="TransactionsController">
 	<div class="row">
-	    <div class="col-md-7" data-ng-init="find()">
+	    <div class="col-md-9" data-ng-init="find()">
 	        <div class="box box-danger">
 	            <div class="box-header">
 	                <h3 class="box-title">Transactions Table</h3>
@@ -32,6 +32,7 @@
 	                        <th>Account</th>
 	                        <th>Category</th>
 	                        <th>Class</th>
+	                        <th>Description</th>
 	                        <th>Created</th>
 	                        <th>Actions</th>
 	                    </tr>
@@ -43,11 +44,15 @@
 	                    	<td>
 	                    		{{transaction.category ? transaction.category.name : 'None'}}
 	                    	</td>
-	                    	<td>{{transaction.class}}</td>
+	                    	<td>{{transaction.klass.name}}</td>
+	                    	<td>{{transaction.description}}</td>
 	                    	<td>{{transaction.createdAt | date:'medium'}}</td>
 	                    	<td>
 	                    		<a data-ng-click="remove(transaction)">
 	                    			<i class="fa fa-times"></i>
+	                    		</a>
+	                    		<a href="#!/transactions/{{transaction.id}}/edit">
+	                    			<i class="fa fa-edit"></i>
 	                    		</a>
 	                    	</td>
 	                    </tr>

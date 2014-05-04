@@ -6,11 +6,13 @@ angular.module('mean', [
 	'ui.route', 
 	'mean.system',
 	'mean.transactions',
+	'mean.klasses', 
 	'mean.categories', 
 	'mean.articles'
 ]);
 
 angular.module('mean.system', []);
 angular.module('mean.articles', []);
+angular.module('mean.klasses', []);
 angular.module('mean.categories', []);
 angular.module('mean.transactions', []);

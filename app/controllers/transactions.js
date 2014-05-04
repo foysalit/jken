@@ -1,7 +1,8 @@
 /**
  * Module dependencies.
  */
-var db = require('../../config/sequelize');
+var db = require('../../config/sequelize'),
+    _ = require('lodash');
 
 /**
  * Find transaction by id
@@ -51,10 +52,7 @@ exports.update = function(req, res) {
     // create a new variable to hold the transaction that was placed on the req object.
     var transaction = req.transaction;
 
-    transaction.updateAttributes({
-        title: req.body.title,
-        content: req.body.content
-    }).success(function(a){
+    transaction.updateAttributes(req.body).success(function(a){
         return res.jsonp(a);
     }).error(function(err){
         return res.render('error', {
@@ -95,7 +93,7 @@ exports.show = function(req, res) {
  * List of transactions
  */
 exports.all = function(req, res) {
-    db.Transaction.findAll({include: [db.User, db.Category]}).success(function(transactions){
+    db.Transaction.findAll({include: [db.User, db.Category, db.Klass]}).success(function(transactions){
         return res.jsonp(transactions);
     }).error(function(err){
         return res.render('error', {

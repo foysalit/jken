@@ -27,6 +27,15 @@
 		        <form role="form" data-ng-submit="create()">
 		            <div class="box-body">
 		                <div class="form-group">
+		                    <label for="description">Transaction Description</label>
+		                    <input 
+		                    	data-ng-model="createFormData.description"
+		                    	type="text" 
+		                    	class="form-control" 
+		                    	id="description" 
+		                    	placeholder="Enter An Account For The Transaction">
+		                </div>
+		                <div class="form-group">
 		                    <label for="account">Transaction Account</label>
 		                    <input 
 		                    	data-ng-model="createFormData.account"
@@ -53,31 +62,39 @@
 		                    	id="payee" 
 		                    	placeholder="Payee">
 		                </div>
-		                <div class="form-group">
-		                    <label for="class">Transaction Class</label>
-		                    <input 
-		                    	data-ng-model="createFormData.class"
-		                    	type="text" 
-		                    	class="form-control" 
-		                    	id="class" 
-		                    	placeholder="Class">
-		                </div>
+		                
 		                <div 
 		                	class="form-group" 
-		                	data-ng-controller="CategoriesController"
+		                	data-ng-controller="KlassesController"
 		                	data-ng-init="find()">
-		                    <label for="class">Transaction Category</label>
+		                    <label for="class">Transaction Class and Category</label>
 		                	<div
 		                		class="checkbox" 
-		                		data-ng-repeat="category in categories">
+		                		data-ng-repeat="klass in klasses">
 			                    <label>
 			                    	<input 
 			                    		type="radio"
-			                    		name="CategoryId" 
-			                    		value="{{category.id}}"
-			                    		data-ng-model="createFormData.CategoryId">
-			                    	{{category.name}}
+			                    		name="KlassId" 
+			                    		value="{{klass.id}}"
+			                    		data-ng-model="createFormData.KlassId">
+			                    	{{klass.name}}
 			                    </label>
+
+								<div class="nested-cats">
+				                    <div
+				                		class="checkbox" 
+				                		data-ng-repeat="cat in klass.categories">
+					                    <label>
+					                    	<input 
+					                    		type="radio"
+					                    		name="CategoryId" 
+					                    		value="{{cat.id}}"
+					                    		data-ng-model="createFormData.CategoryId">
+					                    	{{cat.name}}
+					                    </label>
+				                    </div>
+				                </div>
+
 		                    </div>
 		                </div>
 		            </div><!-- /.box-body -->
