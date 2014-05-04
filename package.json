@@ -13,8 +13,8 @@
     "npm": "1.2.x"
   },
   "scripts": {
-    "start": "node node_modules/grunt-cli/bin/grunt",
-    "postinstall": "bower install"
+    "start": "node app.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "dependencies": {
     "express": "~3.5.0",
