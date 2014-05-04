@@ -37,6 +37,31 @@ else
 
 console.log('Express app started on port ' + port);
 
+db.Klass.findAll({include: [db.Category, db.User]}).success(function(ks){
+    db.sequelize.query('select * from transactions').success(function(ts){
+        _.each(ts, function(t){
+            _.each(ks, function (k) {
+                if(k.name != t.class) return;
+                
+                _.each(k.categories, function(c){
+                    if(c.name != t.category) return;
+                    
+                    db.Transaction.create({
+                        CategoryId: c.id,
+                        KlassId: k.id,
+                        account: t.account,
+                        number: t.number,
+                        payee: t.payee,
+                        cleared: t.cleared == -1 ? '0' : '1',
+                        amount: t.amount,
+                        description: t.description
+                    });
+                });
+            });
+        });
+    });
+});
+
 //expose app
 exports = module.exports = app;
 
