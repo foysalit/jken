@@ -45,6 +45,15 @@
 		                    	placeholder="Enter An Account For The Transaction">
 		                </div>
 		                <div class="form-group">
+		                    <label for="number">Transaction Number</label>
+		                    <input 
+		                    	data-ng-model="createFormData.number"
+		                    	type="text" 
+		                    	class="form-control" 
+		                    	id="number" 
+		                    	placeholder="Enter An Number For The Transaction">
+		                </div>
+		                <div class="form-group">
 		                    <label for="amount">Transaction Amount</label>
 		                    <input 
 		                    	data-ng-model="createFormData.amount"
@@ -61,6 +70,29 @@
 		                    	class="form-control" 
 		                    	id="payee" 
 		                    	placeholder="Payee">
+		                </div>
+
+						<div class="form-group">
+		                    <div class="checkbox" >
+			                    <label>
+			                    	<input 
+			                    		type="radio"
+			                    		name="cleared" 
+			                    		value="1"
+			                    		data-ng-model="createFormData.cleared">
+			                    	yes
+			                    </label>
+		                    </div>
+		                    <div class="checkbox" >
+			                    <label>
+			                    	<input 
+			                    		type="radio"
+			                    		name="cleared" 
+			                    		value="0"
+			                    		data-ng-model="createFormData.cleared">
+			                    	no
+			                    </label>
+		                    </div>
 		                </div>
 		                
 		                <div 

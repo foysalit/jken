@@ -4,7 +4,8 @@ module.exports = function(sequelize, DataTypes) {
             account: DataTypes.INTEGER,
             amount: DataTypes.DECIMAL(10, 2),
             payee: DataTypes.STRING,
-            class: DataTypes.STRING,
+            number: DataTypes.INTEGER,
+            cleared: DataTypes.ENUM(0, 1),
             description: DataTypes.TEXT
         },
         {

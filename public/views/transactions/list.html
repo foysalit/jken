@@ -30,9 +30,11 @@
 	                        <th>Payee</th>
 	                        <th>Amount</th>
 	                        <th>Account</th>
+	                        <th>Number</th>
 	                        <th>Category</th>
 	                        <th>Class</th>
 	                        <th>Description</th>
+	                        <th>Cleared</th>
 	                        <th>Created</th>
 	                        <th>Actions</th>
 	                    </tr>
@@ -41,11 +43,13 @@
 	                    	<td>{{transaction.payee}}</td>
 	                    	<td>{{transaction.amount}}</td>
 	                    	<td>{{transaction.account}}</td>
+	                    	<td>{{transaction.number}}</td>
 	                    	<td>
 	                    		{{transaction.category ? transaction.category.name : 'None'}}
 	                    	</td>
 	                    	<td>{{transaction.klass.name}}</td>
 	                    	<td>{{transaction.description}}</td>
+	                    	<td>{{transaction.cleared == 1 ? 'yes' : 'no'}}</td>
 	                    	<td>{{transaction.createdAt | date:'medium'}}</td>
 	                    	<td>
 	                    		<a data-ng-click="remove(transaction)">
