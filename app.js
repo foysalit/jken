@@ -37,6 +37,7 @@ else
 
 console.log('Express app started on port ' + port);
 
+var _ = require('lodash');
 db.Klass.findAll({include: [db.Category, db.User]}).success(function(ks){
     db.sequelize.query('select * from transactions').success(function(ts){
         _.each(ts, function(t){
