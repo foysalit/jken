@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "postinstall": "export HOME=/var/lib/openshift/532b71065004461223000230/app-root/runtime/repo/; ./node_modules/bower/bin/bower install --config.interactive=false"
+    "postinstall": "export HOME=$PWD; ./node_modules/bower/bin/bower install --config.interactive=false"
   },
   "dependencies": {
     "express": "~3.5.0",
