@@ -100,7 +100,12 @@ exports.all = function(req, res) {
 
     if(req.query.offset) params.offset = req.query.offset;
     if(req.query.limit) params.limit = req.query.limit;
-    if(req.query.withTransactions) params.include.push(db.Transaction);
+    if(req.query.withTransactions) {
+        var incTrans = {
+            model: db.Transaction
+        };
+        params.include.push(incTrans);
+    }
 
     db.Klass.findAll(params).success(function(klasses){
         return res.jsonp(klasses);

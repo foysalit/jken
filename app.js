@@ -35,89 +35,10 @@ if(typeof config.ip !== 'undefined')
 else
     app.listen(port);
 
+//this imports the db data from the temp db, needed only for now
+if(config.db.initiate) require('./app/lib/dbImport');
+
 console.log('Express app started on port ' + port);
 
 //expose app
 exports = module.exports = app;
-
-
-/*
-var _ = require('lodash');
-db.sequelize.query('select * from transactions').success(function(ts){
-    var cats = _.uniq(_.pluck(ts, 'class'));
-    
-    _.each(cats, function(c){
-        if(c.length > 0){
-            db.Klass.create({name: c, UserId: 1});
-        }
-    });
-});
-
-db.sequelize.query('select * from transactions').success(function(ts){
-	var cats = _.uniq(_.pluck(ts, 'category'));
-
-    _.each(cats, function(c){
-    	if(c.length <= 0) return;
-
-    	klass = _.find(ts, {category: c}).class;
-
-        if(klass == 'SimplePC') var k = 1;
-        else if(klass == 'SomeOtherClass') var k = 2;
-        
-        if(typeof k != 'undefined'){
-            db.Category.create({name: c, KlassId: k, UserId: 1});
-        }
-    });
-});
-
-db.Klass.findAll({include: [db.Category, db.User]}).success(function(ks){
-    db.sequelize.query('select * from transactions').success(function(ts){
-        _.each(ts, function(t){
-            _.each(ks, function (k) {
-                if(k.name != t.class) return;
-                
-                _.each(k.categories, function(c){
-                    if(c.name != t.category) return;
-                    
-                    db.Transaction.create({
-                        CategoryId: c.id,
-                        KlassId: k.id,
-                        UserId: 1,
-                        account: t.account,
-                        number: t.number,
-                        payee: t.payee,
-                        cleared: t.cleared == -1 ? '0' : '1',
-                        amount: t.amount,
-                        description: t.description
-                    });
-                });
-            });
-        });
-    });
-});
-
-db.Klass.findAll({include: [db.Category, db.User]}).success(function(ks){
-    db.sequelize.query('select * from transactions').success(function(ts){
-        _.each(ts, function(t){
-            _.each(ks, function (k) {
-                if(k.name != t.class) return;
-                
-                _.each(k.categories, function(c){
-                    if(c.name != t.category) return;
-                    
-                    db.Transaction.create({
-                        CategoryId: c.id,
-                        KlassId: k.id,
-                        account: t.account,
-                        number: t.number,
-                        payee: t.payee,
-                        cleared: t.cleared == -1 ? '0' : '1',
-                        amount: t.amount,
-                        description: t.description
-                    });
-                });
-            });
-        });
-    });
-});
-*/

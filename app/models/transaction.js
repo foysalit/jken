@@ -6,6 +6,7 @@ module.exports = function(sequelize, DataTypes) {
             payee: DataTypes.STRING,
             number: DataTypes.INTEGER,
             cleared: DataTypes.ENUM('0', '1'),
+            date: DataTypes.DATE,
             description: DataTypes.TEXT
         },
         {
