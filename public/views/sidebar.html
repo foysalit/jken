@@ -29,45 +29,104 @@
             </a>
         </li>
         <li 
-            ui-route="/transactions" 
+            ui-route="/finance" 
             ng-class="{active: $uiRoute}"  
             class="treeview" 
             data-treeview>
-            <a href="#!/transactions">
+            <a href="#">
                 <i class="fa fa-th"></i> 
-                <span>Transactions</span> 
+                <span>Finance</span> 
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
                 <li>
-                    <a href="#!/transactions">
+                    <a href="#!/finance/budget">
                         <i class="fa fa-angle-double-right"></i>
-                        View Transactions
+                        Budget
                     </a>
                 </li>
                 <li>
-                    <a href="#!/transactions/create">
+                    <a href="#!/finance/profit-loss">
                         <i class="fa fa-angle-double-right"></i>
-                        Create Transaction
+                        Profit &amp; Loss
+                    </a>
+                </li>
+                <li>
+                    <a href="#!/finance/ballance-sheet">
+                        <i class="fa fa-angle-double-right"></i>
+                        Ballance Sheet
+                    </a>
+                </li>
+                <li>
+                    <a href="#!/finance/receivables">
+                        <i class="fa fa-angle-double-right"></i>
+                        Receivables
+                    </a>
+                </li>
+                <li>
+                    <a href="#!/finance/payables">
+                        <i class="fa fa-angle-double-right"></i>
+                        Payables
                     </a>
                 </li>
             </ul>
         </li>
         <li 
-            ui-route="/categories" 
+            ui-route="/operations" 
             ng-class="{active: $uiRoute}">
-            <a href="#!/categories">
+            <a href="#!/operations">
                 <i class="fa fa-th"></i> 
-                <span>Categories</span> 
+                <span>Operations</span> 
             </a>
         </li>
         <li 
-            ui-route="/classes" 
+            ui-route="/marketing" 
             ng-class="{active: $uiRoute}">
-            <a href="#!/classes">
+            <a href="#!/marketing">
                 <i class="fa fa-th"></i> 
-                <span>Classes</span> 
+                <span>Marketing</span> 
             </a>
+        </li>
+        <li 
+            ui-route="/development" 
+            ng-class="{active: $uiRoute}">
+            <a href="#!/development">
+                <i class="fa fa-th"></i> 
+                <span>Development</span> 
+            </a>
+        </li>
+        <li 
+            ui-route="/tasks" 
+            ng-class="{active: $uiRoute}">
+            <a href="#!/tasks">
+                <i class="fa fa-th"></i> 
+                <span>Tasks</span> 
+            </a>
+        </li>
+        <li 
+            ui-route="/settings" 
+            ng-class="{active: $uiRoute}"  
+            class="treeview" 
+            data-treeview>
+            <a href="#">
+                <i class="fa fa-th"></i> 
+                <span>Settings</span> 
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="#!/settings/categories">
+                        <i class="fa fa-angle-double-right"></i>
+                        Categories
+                    </a>
+                </li>
+                <li>
+                    <a href="#!/settings/classes">
+                        <i class="fa fa-angle-double-right"></i>
+                        Classes
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 </section>

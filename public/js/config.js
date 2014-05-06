@@ -2,37 +2,23 @@
 angular.module('mean').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-            when('/transactions', {
-                templateUrl: 'views/transactions/list.html'
+            when('/finance/profit-loss/', {
+                templateUrl: 'views/finance/list.html'
             }).
-            when('/transactions/create', {
-                templateUrl: 'views/transactions/create.html'
+            when('/finance/profit-loss/create', {
+                templateUrl: 'views/finance/create.html'
             }).
-            when('/transactions/:transactionId/edit', {
-                templateUrl: 'views/transactions/edit.html'
+            when('/finance/profit-loss/:transactionId/edit', {
+                templateUrl: 'views/finance/edit.html'
             }).
-            when('/transactions/:transactionId', {
-                templateUrl: 'views/transactions/view.html'
+            when('/finance/profit-loss/:transactionId', {
+                templateUrl: 'views/finance/view.html'
             }).
-            when('/categories', {
-                templateUrl: 'views/categories/list.html'
+            when('/settings/categories', {
+                templateUrl: 'views/settings/categories/list.html'
             }).
-            when('/categories/:categoryId/edit', {
-                templateUrl: 'views/categories/edit.html'
-            }).
-            when('/categories/:categoryId', {
-                templateUrl: 'views/categories/view.html',
-                controller: 'CategoriesController'
-            }).
-            when('/classes', {
-                templateUrl: 'views/classes/list.html'
-            }).
-            when('/classes/:classId/edit', {
-                templateUrl: 'views/classes/edit.html'
-            }).
-            when('/classes/:classId', {
-                templateUrl: 'views/classes/view.html',
-                controller: 'KlassesController'
+            when('/settings/classes', {
+                templateUrl: 'views/settings/categories/list.html'
             }).
             when('/', {
                 templateUrl: 'views/index.html'
