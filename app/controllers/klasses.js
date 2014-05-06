@@ -96,7 +96,7 @@ exports.show = function(req, res) {
  * List of Klasses
  */
 exports.all = function(req, res) {
-    var params = {include: [db.User, db.Category]};
+    var params = {include: [db.User, db.Category], where: {}};
 
     if(req.query.offset) params.offset = req.query.offset;
     if(req.query.limit) params.limit = req.query.limit;
@@ -105,6 +105,13 @@ exports.all = function(req, res) {
             model: db.Transaction
         };
         params.include.push(incTrans);
+    }
+
+    if(req.query.fromDate && req.query.toDate){
+        params.where['Transactions.date'] = {between: [
+            new Date(req.query.fromDate), 
+            new Date(req.query.toDate)
+        ]};
     }
 
     db.Klass.findAll(params).success(function(klasses){

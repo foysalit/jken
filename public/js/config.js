@@ -3,7 +3,7 @@ angular.module('mean').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
             when('/finance/profit-loss/', {
-                templateUrl: 'views/finance/list.html'
+                templateUrl: 'views/finance/index.html'
             }).
             when('/finance/profit-loss/create', {
                 templateUrl: 'views/finance/create.html'

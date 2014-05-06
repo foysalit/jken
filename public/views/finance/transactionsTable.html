@@ -1,0 +1,64 @@
+<table class="table">
+    <thead>
+        <th>Class</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th style="width:40px">Amount</th>
+    </thead>
+
+    <tbody data-ng-repeat="klass in klasses">
+        <tr>
+            <td colspan="3">
+                {{klass.name}}
+                <i class="fa fa-plus-square" 
+                data-ng-hide="klass.open"
+                data-ng-click="openTray(klass)"></i>
+                <i class="fa fa-minus-square" 
+                data-ng-show="klass.open"
+                data-ng-click="closeTray(klass)"></i>
+            </td>
+            <td style="width:40px">
+                {{getTransactionsTotal(klass.transactions)}}
+            </td>
+        </tr>
+        <tr 
+            data-ng-show="klass.open"
+            data-ng-repeat="cat in klass.categories">
+            <td></td>
+            <td colspan="3">
+                <table class="table">
+                    <tr>
+                        <td colspan="3">
+                            {{cat.name}}
+                            <i class="fa fa-plus-square" 
+                            data-ng-hide="cat.open"
+                            data-ng-click="openTray(cat)"></i>
+                            <i class="fa fa-minus-square" 
+                            data-ng-show="cat.open"
+                            data-ng-click="closeTray(cat)"></i>
+                </td>
+                        <td style="width:40px">
+                            {{getTransactionsTotal(klass.transactions, cat.id)}}
+                        </td>
+                    </tr>
+                    <tr 
+                        data-ng-show="cat.open"
+                        data-ng-repeat="trans in filterTransactionsByCat(klass.transactions, cat.id)">
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <table>
+                                <tr>
+                                    {{trans.description}}
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="width:40px">
+                            {{trans.amount}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

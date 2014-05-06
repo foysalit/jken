@@ -1,9 +1,9 @@
 angular.module('mean').directive('treeview', function () {
-	var treeview = function (el) {
-		return el.each(function() {
+    var treeview = function (el) {
+        return el.each(function() {
             var btn = $(this).children("a").first(),
-            	menu = $(this).children(".treeview-menu").first(),
-            	isActive = $(this).hasClass('active');
+                menu = $(this).children(".treeview-menu").first(),
+                isActive = $(this).hasClass('active');
 
             //initialize already active menus
             if (isActive) {
@@ -36,12 +36,44 @@ angular.module('mean').directive('treeview', function () {
             });
 
         });
+    };
+
+    return {
+        restrict: 'A',
+        link: function ($scope, el, attrs) {
+            treeview(el);
+        }
+    };
+});
+
+angular.module('mean').directive('daterange', function () {
+	var daterange = function ($scope, el) {
+		return el.each(function() {
+            $(el).daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                    'Last 7 Days': [moment().subtract('days', 6), moment()],
+                    'Last 30 Days': [moment().subtract('days', 29), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')],
+                    'This year': [moment().startOf('year'), moment().endOf('month')]
+                },
+                startDate: moment().subtract('days', 29),
+                endDate: moment()
+            }, function(start, end) {
+                $scope.filters.fromDate = start.format();
+                $scope.filters.toDate = end.format();
+                $scope.$apply();
+            });
+
+        });
 	};
 
 	return {
 		restrict: 'A',
 		link: function ($scope, el, attrs) {
-			treeview(el);
+			daterange($scope, el);
 		}
 	};
 });
