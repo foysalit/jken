@@ -64,7 +64,6 @@ angular.module('mean').directive('daterange', function () {
             }, function(start, end) {
                 $scope.filters.fromDate = start.format();
                 $scope.filters.toDate = end.format();
-                $scope.$apply();
             });
 
         });

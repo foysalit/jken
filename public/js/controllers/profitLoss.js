@@ -5,7 +5,7 @@ angular.module('mean.system').controller('profitLossController', [
 
     $scope.filters = {
         withTransactions: true,
-        fromDate: moment().subtract('days', 6).format(),
+        fromDate: moment().subtract('days', 30).format(),
         toDate: moment().format()
     };
 
