@@ -10,9 +10,9 @@ exports.init = function(app, passport, auth) {
     console.log('Initializing Routes');
 
     // User Routes
-    app.get('/signin', users.signin);
+    app.get('/login', users.signin);
     app.get('/signup', users.signup);
-    app.get('/signout', users.signout);
+    app.get('/logout', users.signout);
     app.get('/users/me', users.me);
 
     // Setting up the users api
@@ -20,7 +20,7 @@ exports.init = function(app, passport, auth) {
 
     // Setting the local strategy route
     app.post('/users/session', passport.authenticate('local', {
-        failureRedirect: '/signin',
+        failureRedirect: '/login',
         failureFlash: true
     }), users.session);
 
@@ -55,6 +55,6 @@ exports.init = function(app, passport, auth) {
     app.param('transactionId', transactions.transaction);
 
     // Home route
-    app.get('/', index.render);
+    app.get('/', auth.requiresLogin, index.render);
 
 };
