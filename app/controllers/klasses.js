@@ -96,13 +96,24 @@ exports.show = function(req, res) {
  * List of Klasses
  */
 exports.all = function(req, res) {
-    var params = {include: [db.User, db.Category], where: {}};
+    var params = {
+        include: [{
+                model: db.User, 
+                attributes: ['id']
+            }, {
+                model: db.Category,
+                attributes: ['KlassId', 'id', 'name'] 
+            }
+        ],
+        where: {}
+    };
 
     if(req.query.offset) params.offset = req.query.offset;
     if(req.query.limit) params.limit = req.query.limit;
     if(req.query.withTransactions) {
         var incTrans = {
-            model: db.Transaction
+            model: db.Transaction,
+            attributes: ['amount', 'description', 'KlassId', 'CategoryId']
         };
         params.include.push(incTrans);
     }
