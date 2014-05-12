@@ -18,7 +18,7 @@ angular.module('mean').config(['$routeProvider',
                 templateUrl: 'views/settings/categories/list.html'
             }).
             when('/settings/classes', {
-                templateUrl: 'views/settings/categories/list.html'
+                templateUrl: 'views/settings/classes/list.html'
             }).
             when('/', {
                 templateUrl: 'views/index.html'
