@@ -17,7 +17,8 @@ exports.init = function(app, passport, auth) {
     app.get('/users/me', users.me);
 
     // Setting up the users api
-    app.post('/users', users.create);
+    //sign up is closed for now
+    //app.post('/users', users.create);
 
     // Setting the local strategy route
     app.post('/users/session', passport.authenticate('local', {
