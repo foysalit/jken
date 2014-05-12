@@ -62,8 +62,8 @@ angular.module('mean').directive('daterange', function () {
                 startDate: moment().subtract('days', 29),
                 endDate: moment()
             }, function(start, end) {
-                $scope.filters.fromDate = start.format();
-                $scope.filters.toDate = end.format();
+                $scope.transactionFilters.fromDate = start.format();
+                $scope.transactionFilters.toDate = end.format();
             });
 
         });

@@ -6,7 +6,9 @@
         <th style="width:40px">Amount</th>
     </thead>
 
-    <tbody data-ng-repeat="klass in klasses">
+    <tbody 
+        data-ng-repeat="klass in klasses" 
+        data-ng-if="getTransactionsByKlass(klass.id, true) > 0">
         <tr>
             <td colspan="3">
                 {{klass.name}}
@@ -18,12 +20,13 @@
                 data-ng-click="closeTray(klass)"></i>
             </td>
             <td style="width:40px">
-                {{getTransactionsTotal(klass.transactions)}}
+                {{getKlassAmount(klass.id)}}
             </td>
         </tr>
         <tr 
             data-ng-show="klass.open"
-            data-ng-repeat="cat in klass.categories">
+            data-ng-repeat="cat in klass.categories"
+            data-ng-if="getTransactionsByCategory(cat.id, true) > 0">
             <td></td>
             <td colspan="3">
                 <table class="table">
@@ -38,12 +41,12 @@
                             data-ng-click="closeTray(cat)"></i>
                         </td>
                         <td style="width:40px">
-                            {{getTransactionsTotal(klass.transactions, cat.id)}}
+                            {{getCategoryAmount(cat.id)}}
                         </td>
                     </tr>
                     <tr 
                         data-ng-show="cat.open"
-                        data-ng-repeat="trans in filterTransactionsByCat(klass.transactions, cat.id)">
+                        data-ng-repeat="trans in getTransactionsByCategory(cat.id)">
                         <td></td>
                         <td></td>
                         <td>

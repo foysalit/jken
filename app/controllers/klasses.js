@@ -98,18 +98,22 @@ exports.show = function(req, res) {
 exports.all = function(req, res) {
     var params = {
         include: [{
-                model: db.User, 
-                attributes: ['id']
-            }, {
-                model: db.Category,
-                attributes: ['KlassId', 'id', 'name'] 
-            }
-        ],
+            model: db.User, 
+            attributes: ['id']
+        }],
         where: {}
     };
 
     if(req.query.offset) params.offset = req.query.offset;
     if(req.query.limit) params.limit = req.query.limit;
+
+    if(req.query.withCategories){
+        params.include.push({
+            model: db.Category,
+            attributes: ['KlassId', 'id', 'name'] 
+        });
+    }
+
     if(req.query.withTransactions) {
         var incTrans = {
             model: db.Transaction,

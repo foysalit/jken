@@ -93,15 +93,22 @@ exports.show = function(req, res) {
  * List of transactions
  */
 exports.all = function(req, res) {
-    var includes = [db.User, db.Category, db.Klass],
-        wheres = {};
+    var params = {
+        include: [{
+            model: db.User, 
+            attributes: ['id']
+        }],
+        where: {}
+    };
 
     if(req.query.fromDate && req.query.toDate){
-        wheres.date = {between: [new Date(req.query.fromDate), new Date(req.query.toDate)]};
+        params.where['date'] = {between: [
+            new Date(req.query.fromDate), 
+            new Date(req.query.toDate)
+        ]};
     }
 
-    db.Transaction.findAll({include: includes, where: wheres}).success(function(transactions){
-        console.log(transactions.length);
+    db.Transaction.findAll(params).success(function(transactions){
         return res.jsonp(transactions);
     }).error(function(err){
         return res.render('error', {

@@ -10,14 +10,15 @@
 </section>  
 
 <section class="content" data-ng-controller="profitLossController">
-    <div class="row" data-ng-init="getKlasses()">
+    <div class="row" data-ng-init="getKlasses(); getTransactions()">
         <div class="col-md-9">
             <div class="box box-danger">
                 <div class="box-header">
                     <h3 class="box-title">Transactions List</h3>
                     <h5 class="pull-right">
-                        Displaying from : {{filters.fromDate | date:short}}
-                        to : {{filters.toDate | date:short}}
+                        Displaying from : 
+                        {{transactionFilters.fromDate | date:short}}
+                        to : {{transactionFilters.toDate | date:short}}
                         &nbsp;&nbsp;&nbsp;
                     </h5>
                 </div>
@@ -53,7 +54,7 @@
                     <div 
                         class="btn btn-success" 
                         type="button" 
-                        ng-click="getKlasses()">
+                        ng-click="getTransactions()">
                         Apply Filters
                     </div>
                 </div>
