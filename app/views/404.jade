@@ -1,13 +1,14 @@
-extends layouts/default
+extends users/auth
 
-block main
-	h1 Oops something went wrong
-	br
-	span 404
+block auth
+	#login-box.form-box
+		.header Error!
 
-block content
-	#error-message-box
-		#error-stack-trace
-			pre
-				code!= error
+		.body.bg-gray
+			h1.text-center 404
+			p.text-center
+				| The page you're looking for doesn't exist
 
+
+		.footer
+			a.btn.bg-navy.btn-block(href="/login") Sign In
