@@ -11,7 +11,8 @@ exports.init = function(app, passport, auth) {
 
     // User Routes
     app.get('/login', users.signin);
-    app.get('/signup', users.signup);
+    //sign up is closed for now
+    //app.get('/signup', users.signup);
     app.get('/logout', users.signout);
     app.get('/users/me', users.me);
 
