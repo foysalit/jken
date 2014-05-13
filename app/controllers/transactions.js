@@ -108,6 +108,9 @@ exports.all = function(req, res) {
         ]};
     }
 
+    if(req.query.limit && parseInt(req.query.limit) > 0) 
+        params.limit = req.query.limit;
+
     db.Transaction.findAll(params).success(function(transactions){
         return res.jsonp(transactions);
     }).error(function(err){

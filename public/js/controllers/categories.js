@@ -26,7 +26,6 @@ angular.module('mean.categories').controller('CategoriesController', [
         }
         else {
             $scope.category.$remove();
-            $location.path('categories');
         }
     };
 
@@ -36,9 +35,9 @@ angular.module('mean.categories').controller('CategoriesController', [
             category.updated = [];
         }
         category.updated.push(new Date().getTime());
-
+        
         category.$update(function() {
-            $location.path('categories/' + category.id);
+            $location.path('settings/categories');
         });
     };
 

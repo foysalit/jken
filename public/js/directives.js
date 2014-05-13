@@ -47,8 +47,8 @@ angular.module('mean').directive('treeview', function () {
 });
 
 angular.module('mean').directive('daterange', function () {
-	var daterange = function ($scope, el) {
-		return el.each(function() {
+    var daterange = function ($scope, el) {
+        return el.each(function() {
             $(el).daterangepicker({
                 ranges: {
                     'Today': [moment(), moment()],
@@ -67,12 +67,27 @@ angular.module('mean').directive('daterange', function () {
             });
 
         });
+    };
+
+    return {
+        restrict: 'A',
+        link: function ($scope, el, attrs) {
+            daterange($scope, el);
+        }
+    };
+});
+
+angular.module('mean').directive('datemask', function () {
+	var datemask = function ($scope, el) {
+		return el.each(function() {
+            $(el).inputmask("date");
+        });
 	};
 
 	return {
 		restrict: 'A',
 		link: function ($scope, el, attrs) {
-			daterange($scope, el);
+			datemask($scope, el);
 		}
 	};
 });

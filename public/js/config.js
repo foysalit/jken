@@ -2,20 +2,23 @@
 angular.module('mean').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-            when('/finance/profit-loss/', {
+            when('/finance/profit-loss', {
                 templateUrl: 'views/finance/index.html'
             }).
-            when('/finance/profit-loss/create', {
-                templateUrl: 'views/finance/create.html'
+            when('/finance/transactions', {
+                templateUrl: 'views/finance/transactions/index.html'
             }).
-            when('/finance/profit-loss/:transactionId/edit', {
-                templateUrl: 'views/finance/edit.html'
+            when('/finance/transactions/:transactionId/edit', {
+                templateUrl: 'views/finance/transactions/edit.html'
             }).
-            when('/finance/profit-loss/:transactionId', {
-                templateUrl: 'views/finance/view.html'
+            when('/finance/transactions/:transactionId', {
+                templateUrl: 'views/finance/transactions/view.html'
             }).
             when('/settings/categories', {
                 templateUrl: 'views/settings/categories/list.html'
+            }).
+            when('/settings/categories/:categoryId/edit', {
+                templateUrl: 'views/settings/categories/edit.html'
             }).
             when('/settings/classes', {
                 templateUrl: 'views/settings/classes/list.html'

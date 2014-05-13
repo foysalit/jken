@@ -43,8 +43,12 @@ angular.module('mean.klasses').controller('KlassesController', [
         });
     };
 
-    $scope.find = function() {
-        Klasses.query(function(klasses) {
+    $scope.find = function(withCat) {
+        var query = {};
+
+        if(withCat) query.withCategories = true;
+
+        Klasses.query(query, function(klasses) {
             $scope.klasses = klasses;
         });
     };
@@ -55,5 +59,9 @@ angular.module('mean.klasses').controller('KlassesController', [
         }, function(klass) {
             $scope.klass = klass;
         });
+    };
+
+    $scope.klassSelected = function (klass) {
+        return parseInt($scope.createFormData.KlassId) === klass.id;
     };
 }]);

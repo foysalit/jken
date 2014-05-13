@@ -10,7 +10,7 @@ var db = require('../../config/sequelize');
  */
 exports.category = function(req, res, next, id) {
     console.log('id => ' + id);
-    db.Category.find({ where: {id: id}, include: [db.User, db.Klass, db.Transaction]}).success(function(category){
+    db.Category.find({ where: {id: id}, include: [db.User]}).success(function(category){
         if(!category) {
             return next(new Error('Failed to load category ' + id));
         } else {
@@ -51,10 +51,7 @@ exports.update = function(req, res) {
     // create a new variable to hold the category that was placed on the req object.
     var category = req.category;
 
-    category.updateAttributes({
-        title: req.body.title,
-        content: req.body.content
-    }).success(function(a){
+    category.updateAttributes(req.body).success(function(a){
         return res.jsonp(a);
     }).error(function(err){
         return res.render('error', {

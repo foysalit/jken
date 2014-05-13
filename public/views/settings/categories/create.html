@@ -10,7 +10,7 @@
 	        </a>
 	    </li>
         <li>
-        	<a href="#!/categories">Categories</a>
+        	<a href="#!/settings/categories">Categories</a>
         </li>
         <li class="active">Create</li>
     </ol>
@@ -36,6 +36,9 @@
 	                    	<td>
 	                    		<a data-ng-click="removeOne($index)">
 	                    			<i class="fa fa-times"></i>
+	                    		</a>
+	                    		<a href="#!/settings/categories/{{category.id}}/edit">
+	                    			<i class="fa fa-pencil"></i>
 	                    		</a>
 	                    	</td>
 	                    </tr>
@@ -79,4 +82,4 @@
 		    </div><!-- /.box -->
 		</div>
 	</div>
-</section>
+</section>settings/

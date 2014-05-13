@@ -3,10 +3,14 @@ angular.module('mean.transactions').controller('TransactionsController', ['$scop
 
     $scope.createFormData = {};
     $scope.create = function() {
+        //the date needs to be parsed as a valid date format
+        var date = moment(this.createFormData.date, "DD/MM/YYYY");
+        this.createFormData.date = date.toDate();
+        
         var transaction = new Transactions(this.createFormData);
         
         transaction.$save(function(response) {
-            $location.path("transactions");
+            $location.path("finance/profit-loss");
         });
         
         $scope.createFormData = {};
@@ -37,7 +41,7 @@ angular.module('mean.transactions').controller('TransactionsController', ['$scop
     };
 
     $scope.find = function() {
-        Transactions.query(function(transactions) {
+        Transactions.query($scope.pagination, function(transactions) {
             $scope.transactions = transactions;
         });
     };
