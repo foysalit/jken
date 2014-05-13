@@ -16,7 +16,7 @@ exports.dbBackUp = function (req, res) {
 		file = FOLDER +'/'+ new Date().getTime() + '.sql';
 
 	if(process.env.NODE_ENV == 'production')
-		var command = "mysqldump -h "+ config.host +" --user "+ user +" --password="+ pass +" "+ db +" > "+ file;
+		var command = "mysqldump -h "+ config.db.host +" --user "+ user +" --password="+ pass +" "+ db +" > "+ file;
 	else
 		var command = "mysqldump --user "+ user +" --password="+ pass +" "+ db +" > "+ file;
 
