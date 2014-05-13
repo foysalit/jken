@@ -23,6 +23,9 @@ angular.module('mean').config(['$routeProvider',
             when('/settings/classes', {
                 templateUrl: 'views/settings/classes/list.html'
             }).
+            when('/settings/tools', {
+                templateUrl: 'views/settings/tools/index.html'
+            }).
             when('/', {
                 templateUrl: 'views/index.html'
             }).

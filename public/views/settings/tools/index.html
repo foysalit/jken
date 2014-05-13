@@ -1,0 +1,71 @@
+<section class="content-header">
+    <h1>
+        Tools Dashboard
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+	        <a href="#">
+	        	<i class="fa fa-dashboard"></i> 
+	        	Home
+	        </a>
+	    </li>
+        <li>
+        	<a href="#!/settings">Settings</a>
+        </li>
+        <li class="active">Tools</li>
+    </ol>
+</section>
+
+<section class="content" data-ng-controller="SettingsController">
+	<div class="row">
+
+	    <div class="col-md-3">
+	        <div class="box">
+	            <div class="box-header">
+	                <h3 class="box-title">Database Backups</h3>
+	            </div><!-- /.box-header -->
+	            <div class="box-body" data-ng-init="getDbBackUps()">
+	                <button 
+	                	class="btn btn-primary pull-right"
+	                	type="button" 
+	                	data-ng-click="dbBackUp()">
+	                	Create Backup
+	                </button>
+					<div class="clearfix"></div>
+					
+					<div data-ng-if="backUps.length > 0">
+						
+		                <h3>Previous Backups</h3>
+
+		                <table class="table">
+		                	<thead>
+		                		<td>Date</td>
+		                		<td>Actions</td>
+		                	</thead>
+
+		                	<tbody>
+		                		<tr data-ng-repeat="backUp in backUps">
+		                			<td>
+		                			{{ backUp.createdAt | date:'medium' }}
+		                			</td>
+		                			<td>
+										<a href="/{{backUp.url}}">
+											<i class="fa fa-download"></i>
+										</a>
+										<a data-ng-click="removeDbBackUp(backUp)">
+											<i class="fa fa-times"></i>
+										</a>
+		                			</td>
+		                		</tr>
+		                	</tbody>
+		                </table>
+					</div>
+
+					<h3 data-ng-if="backUps.length <= 0">
+						No Backups found
+					</h3>
+	            </div><!-- /.box-body -->
+	        </div><!-- /.box -->
+	    </div><!-- /.col -->
+	</div>
+</section>

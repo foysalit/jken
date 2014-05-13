@@ -26,5 +26,6 @@ public/lib
 test/coverage/
 migrations/
 config/env/development.js
+dbs/*
 
 *.local

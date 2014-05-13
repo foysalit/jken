@@ -3,6 +3,7 @@ var users       = require('../app/controllers/users');
 var klasses    = require('../app/controllers/klasses');
 var categories    = require('../app/controllers/categories');
 var transactions    = require('../app/controllers/transactions');
+var settings       = require('../app/controllers/settings');
 var index       = require('../app/controllers/index');
 
 exports.init = function(app, passport, auth) {
@@ -49,6 +50,12 @@ exports.init = function(app, passport, auth) {
     app.get('/transactions/:transactionId', auth.requiresLogin, transactions.show);
     app.put('/transactions/:transactionId', auth.requiresLogin, auth.common.hasAuthorization, transactions.update);
     app.del('/transactions/:transactionId', auth.requiresLogin, auth.common.hasAuthorization, transactions.destroy);
+    
+    // Settings Routes
+    app.post('/settings/database_backups', auth.requiresLogin, settings.dbBackUp);
+    app.get('/settings/database_backups', auth.requiresLogin, settings.getDbBackUps);
+    app.get('/settings/database_backups/download', auth.requiresLogin, settings.downloadBackUp);
+    app.post('/settings/database_backups/remove', auth.requiresLogin, settings.removeDbBackUp);
 
     // Finish with setting up the articleId param
     // Note: the articles.article function will be called everytime then it will call the next function.
