@@ -13,13 +13,13 @@ exports.init = function(app, passport, auth) {
     // User Routes
     app.get('/login', users.signin);
     //sign up is closed for now
-    //app.get('/signup', users.signup);
+    app.get('/signup', users.signup);
     app.get('/logout', auth.requiresLogin, users.signout);
     app.get('/users/me', auth.requiresLogin, users.me);
 
     // Setting up the users api
     //sign up is closed for now
-    //app.post('/users', users.create);
+    app.post('/users', users.create);
 
     // Setting the local strategy route
     app.post('/users/session', passport.authenticate('local', {

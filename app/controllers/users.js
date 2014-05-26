@@ -49,7 +49,7 @@ exports.session = function(req, res) {
  * Create user
  * closed for now
  */
-/*exports.create = function(req, res) {
+exports.create = function(req, res) {
     var message = null;
 
     var user = db.User.build(req.body);
@@ -70,7 +70,7 @@ exports.session = function(req, res) {
           user: user
       });
     });
-};*/
+};
 
 /**
  * Send User

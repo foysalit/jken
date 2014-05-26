@@ -92,7 +92,7 @@ exports.show = function(req, res) {
  * List of Categories
  */
 exports.all = function(req, res) {
-    db.Category.findAll({include: [db.User, db.Klass]}).success(function(categories){
+    db.Category.findAll({include: [db.User]}).success(function(categories){
         return res.jsonp(categories);
     }).error(function(err){
         return res.render('500', {

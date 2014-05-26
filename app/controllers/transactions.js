@@ -120,3 +120,7 @@ exports.all = function(req, res) {
         });
     });
 };
+
+var arrangeForProfitLoss = function (transactions) {
+    var results = [];
+};

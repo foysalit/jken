@@ -5,7 +5,6 @@ module.exports = function(sequelize, DataTypes) {
         },
         {
             associate: function(models){
-                Klass.hasMany(models.Category);
                 Klass.hasMany(models.Transaction);
                 Klass.belongsTo(models.User);
             }

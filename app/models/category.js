@@ -6,7 +6,6 @@ module.exports = function(sequelize, DataTypes) {
         {
             associate: function(models){
                 Category.hasMany(models.Transaction);
-                Category.belongsTo(models.Klass);
                 Category.belongsTo(models.User);
             }
         }
