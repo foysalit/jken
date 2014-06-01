@@ -93,7 +93,7 @@ exports.show = function(req, res) {
  * List of transactions
  */
 exports.all = function(req, res) {
-    req.query.includeUser = true;
+    //req.query.includeUser = true;
     var params = buildTransactionsQuery(req.query);
 
     db.Transaction.findAll(params).success(function(transactions){
