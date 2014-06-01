@@ -52,5 +52,6 @@ module.exports = function(sequelize, DataTypes) {
     setTimeout(function () {
     	user.save();
     }, 1500);
+
 	return User;
 };
