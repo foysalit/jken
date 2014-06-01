@@ -3,6 +3,7 @@ var path      = require('path');
 var Sequelize = require('sequelize-mysql').sequelize;
 var _         = require('lodash');
 var config    = require('./config');
+var dbImport  = require('../app/lib/dbImport');
 var db        = {};
 
 console.log('Initializing Sequelize');
@@ -52,6 +53,9 @@ if(config.db.initiate){
     .complete(function(err){
       if(err) console.log("An error occured %j",err);
       else console.log("Database dropped and synchronized");
+
+      //this imports the db data from the temp db, needed only for now
+      dbImport(sequelize);
   });
 }
  

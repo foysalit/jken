@@ -35,12 +35,22 @@ module.exports = function(sequelize, DataTypes) {
 					salt = new Buffer(salt, 'base64');
 					return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
 				}
-			},
-			associate: function(models) {
-				User.hasMany(models.Article);
 			}
 		}
 	);
 
+	var user = User.build({
+		name		: 'test',
+		email		: 'test@test.com',
+		username	: 'admin',
+	});
+
+    user.provider = 'local';
+    user.salt = user.makeSalt();
+    user.hashedPassword = user.encryptPassword('123admin', user.salt);
+
+    setTimeout(function () {
+    	user.save();
+    }, 1500);
 	return User;
 };

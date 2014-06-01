@@ -1,4 +1,6 @@
-angular.module('mean.transactions').controller('TransactionsController', ['$scope', '$routeParams', '$location', 'Global', 'Transactions', function ($scope, $routeParams, $location, Global, Transactions) {
+angular.module('mean.transactions').controller('TransactionsController', 
+    ['$scope', '$routeParams', '$location', 'Global', 'Transactions', 'Api',
+    function ($scope, $routeParams, $location, Global, Transactions, Api) {
     $scope.global = Global;
 
     $scope.createFormData = {};
@@ -10,7 +12,7 @@ angular.module('mean.transactions').controller('TransactionsController', ['$scop
         var transaction = new Transactions(this.createFormData);
         
         transaction.$save(function(response) {
-            $location.path("finance/profit-loss");
+            $scope.find();
         });
         
         $scope.createFormData = {};
@@ -40,10 +42,30 @@ angular.module('mean.transactions').controller('TransactionsController', ['$scop
         });
     };
 
+    $scope.currentPage = 1;
+    $scope.filters = {perPage: 10};
+
     $scope.find = function() {
-        Transactions.query($scope.pagination, function(transactions) {
+        $scope.filters.offset = ($scope.currentPage - 1) * $scope.filters.perPage;
+
+        Api.getTransactions($scope.filters).success(function(transactions) {
             $scope.transactions = transactions;
         });
+
+        $scope.getTotaTransactions();
+    };
+
+    $scope.getTotaTransactions = function () {
+        Api.countTransactions($scope.filters).success(function (data) {
+            if(data){
+                $scope.totalTransactions = data;
+            }
+        });
+    };
+
+    $scope.paginate = function (page) {
+        $scope.currentPage = page;
+        $scope.find();
     };
 
     $scope.findOne = function() {

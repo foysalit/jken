@@ -8,6 +8,9 @@ angular.module('mean').config(['$routeProvider',
             when('/finance/transactions', {
                 templateUrl: 'views/finance/transactions/index.html'
             }).
+            when('/finance/forecasts', {
+                templateUrl: 'views/finance/forecasts.html'
+            }).
             when('/finance/transactions/:transactionId/edit', {
                 templateUrl: 'views/finance/transactions/edit.html'
             }).

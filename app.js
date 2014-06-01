@@ -35,9 +35,6 @@ if(typeof config.ip !== 'undefined')
 else
     app.listen(port);
 
-//this imports the db data from the temp db, needed only for now
-if(config.db.initiate) require('./app/lib/dbImport');
-
 console.log('Express app started on port ' + port);
 
 //expose app

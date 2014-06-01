@@ -4,6 +4,8 @@ module.exports = function(sequelize, DataTypes) {
             account: DataTypes.INTEGER,
             amount: DataTypes.DECIMAL(10, 2),
             payee: DataTypes.STRING,
+            entity: DataTypes.STRING,
+            category: DataTypes.STRING,
             number: DataTypes.INTEGER,
             cleared: DataTypes.ENUM('0', '1'),
             date: DataTypes.DATE,
@@ -11,8 +13,6 @@ module.exports = function(sequelize, DataTypes) {
         },
         {
             associate: function(models){
-                Transaction.belongsTo(models.Klass);
-                Transaction.belongsTo(models.Category);
                 Transaction.belongsTo(models.User);
             }
         }

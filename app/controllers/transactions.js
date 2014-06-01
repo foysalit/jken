@@ -93,23 +93,8 @@ exports.show = function(req, res) {
  * List of transactions
  */
 exports.all = function(req, res) {
-    var params = {
-        include: [{
-            model: db.User, 
-            attributes: ['id']
-        }],
-        where: {}
-    };
-
-    if(req.query.fromDate && req.query.toDate){
-        params.where['date'] = {between: [
-            new Date(req.query.fromDate), 
-            new Date(req.query.toDate)
-        ]};
-    }
-
-    if(req.query.limit && parseInt(req.query.limit) > 0) 
-        params.limit = req.query.limit;
+    req.query.includeUser = true;
+    var params = buildTransactionsQuery(req.query);
 
     db.Transaction.findAll(params).success(function(transactions){
         return res.jsonp(transactions);
@@ -121,6 +106,175 @@ exports.all = function(req, res) {
     });
 };
 
-var arrangeForProfitLoss = function (transactions) {
-    var results = [];
+/**
+ * Show an transaction
+ */
+exports.count = function(req, res) {
+    var params = buildTransactionsQuery(req.query);
+
+    db.Transaction.count().success(function (count) {
+        return res.jsonp(count);
+    }).error(function(err){
+        return res.render('error', {
+            error: err,
+            status: 500
+        });
+    });
+};
+
+var buildTransactionsQuery = function (filters) {
+    var params = {
+        include: [],
+        where: {}
+    };
+
+    if(filters.includeUser){
+        params.include.push({
+            model: db.User, 
+            attributes: ['id']
+        });
+    }
+
+    if(filters.fromDate && filters.toDate){
+        params.where['date'] = {between: [
+            new Date(filters.fromDate), 
+            new Date(filters.toDate)
+        ]};
+    }
+
+    if(filters.limit && parseInt(filters.limit) > 0) 
+        params.limit = req.query.limit;
+
+    if(filters.perPage && parseInt(filters.perPage) > 0) 
+        params.limit = filters.perPage;
+
+    if(filters.offset && parseInt(filters.offset) > 0) 
+        params.offset = filters.offset;
+
+    return params
+};
+
+var buildProfitLoss = function (transactions) {
+    tmp = {};
+    
+    for(i=0;i<transactions.length;i++){
+        var entity = transactions[i]['entity'],
+            cat = transactions[i]['category'],
+            payee = transactions[i]['payee'],
+            amount = transactions[i]['amount'];
+            
+        if (tmp[entity]) {
+            tmp[entity].total += amount;
+
+            if(tmp[entity][cat]){
+                tmp[entity][cat].total += amount;
+
+                if(tmp[entity][cat][payee]){
+                    tmp[entity][cat][payee].amount += amount;
+                }else{
+                    tmp[entity][cat][payee] = {'amount': amount};
+                }
+            }else{
+                tmp[entity][cat] = {};
+                tmp[entity][cat][payee] = {'amount': amount};
+            }
+        }else{
+            tmp[entity] = {total : 0.00};
+            tmp[entity][cat] = {total: 0.00};
+            tmp[entity][cat][payee] = {'amount': amount};
+        }
+    }
+};
+
+var buildForecasts = function(forecasts, transactions){
+    tmp = {};
+    
+    for(i=0;i<transactions.length;i++){
+        var entity = transactions[i]['entity'],
+            cat = transactions[i]['category'],
+            payee = transactions[i]['payee'],
+            amount = transactions[i]['amount'];
+            
+        if (tmp[entity]) {
+          
+            if(tmp[entity][cat]){
+                if(tmp[entity][cat][payee]){
+                    tmp[entity][cat][payee].amount += amount;
+                }else{
+                    tmp[entity][cat][payee] = {'amount': amount};
+                }
+            }else{
+                tmp[entity][cat] = {};
+                tmp[entity][cat][payee] = {'amount': amount};
+            }
+        }else{
+        
+            tmp[entity] = {};
+            tmp[entity][cat] = {};
+            tmp[entity][cat][payee] = {'amount': amount};
+            
+        
+        }
+    }
+    
+    for(i=0;i<forecasts.length;i++){
+        var entity = forecasts[i]['entity'],
+            cat = forecasts[i]['category'],
+            payee = forecasts[i]['payee'],
+            amount = forecasts[i]['amount'];
+            
+        if (tmp[entity]) {
+          
+            if(tmp[entity][cat]){
+                if(tmp[entity][cat][payee]){
+                    tmp[entity][cat][payee].forecast = amount
+                }else{
+                    tmp[entity][cat][payee] = {'forecast': amount};
+                }
+            }else{
+                tmp[entity][cat] = {};
+                tmp[entity][cat][payee] = {'forecast': amount};
+            }
+        }else{
+        
+            tmp[entity] = {};
+            tmp[entity][cat] = {};
+            tmp[entity][cat][payee] = {'forecast': amount};
+            
+        
+        }
+    }
+    
+    return tmp;
+};
+
+var getTransactionsByDate = function(from, to){
+    return db.Transaction.findAll({ 
+        attributes: ['entity', 'category', 'payee', [db.sequelize.fn('sum', db.sequelize.col('amount')), 'amount']],
+        group:['entity', 'category', 'payee'], 
+        where: ["`date` >= ? and `date` <= ?",
+            from,
+            to
+        ]
+    });
+};
+
+var getForecasts = function(){
+    return db.Forecast.findAll({
+        attributes: ['entity', 'category', 'payee', [db.sequelize.fn('sum', db.sequelize.col('amount')), 'amount']],
+        group:['entity', 'category', 'payee']
+    });
+};
+
+exports.forecasts = function(req, res){
+    var from = req.query.fromDate,
+        to = req.query.toDate;
+
+    //better option would be to use async.js or promise
+    getTransactionsByDate(from, to).success(function(transactions){
+        getForecasts().success(function(forecasts){
+            var data = buildForecasts(forecasts, transactions);
+            res.json(data);
+        });
+    });
 };
